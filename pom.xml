@@ -56,6 +56,14 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>
+						com.khaannn.BlogApplication
+					</mainClass>
+					<layout>
+						jar
+					</layout>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

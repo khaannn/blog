@@ -2,6 +2,7 @@ package com.khaannn;
 
 import org.springframework.boot.*;
 import org.springframework.stereotype.*;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -14,7 +15,9 @@ public class SampleController {
 
 
     @RequestMapping("/about")
-    String about(){
+    String about(Model model){
+        String content = "up in here<p/> Testing self closing tag.";
+        model.addAttribute("content", content);
         return "about";
     }
 
@@ -27,7 +30,8 @@ public class SampleController {
     @RequestMapping("/post")
     String post() { return "post";}
 
-
+    @RequestMapping("/footer")
+    String footer() { return "footer";}
 
 
     public static void main(String[] args) {
