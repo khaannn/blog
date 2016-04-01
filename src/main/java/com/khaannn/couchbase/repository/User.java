@@ -2,6 +2,7 @@ package com.khaannn.couchbase.repository;
 
 import com.couchbase.client.java.repository.annotation.Field;
 import com.couchbase.client.java.repository.annotation.Id;
+import com.khaannn.PasswordHasher;
 import org.springframework.data.couchbase.core.mapping.Document;
 
 import java.util.Date;
@@ -21,14 +22,18 @@ public class User {
     @Field
     private int securityLevel;
 
+    @Field
+    private String passwordHash;
+
 
     public User(){
         this.initialize();
     }
 
-    public User(String userName, int securityLevel){
+    public User(String userName, int securityLevel, String passwordHash){
         this.userName = userName;
         this.securityLevel = securityLevel;
+        this.passwordHash = PasswordHasher.hashPassword(passwordHash);
         this.initialize();
     }
 
@@ -60,5 +65,13 @@ public class User {
 
     public void setSecurityLevel(int securityLevel) {
         this.securityLevel = securityLevel;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 }

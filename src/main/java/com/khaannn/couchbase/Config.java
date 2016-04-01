@@ -16,8 +16,9 @@ public class Config extends AbstractCouchbaseConfiguration {
 
     @Override
     protected List<String> getBootstrapHosts() {
-        return Arrays.asList("localhost:5984");
+        return Arrays.asList("localhost");
     }
+
 
     @Override
     protected String getBucketName() {

@@ -11,22 +11,21 @@ import java.util.UUID;
 /**
  * Created by khaannn on 3/31/2016.
  */
-@Document
+
 public class Comment {
-    @Id
+
     private String commentId;
 
-    @Field
     private String userId;
 
 
-    @Field
+
     private Date date;
 
-    @Field
+
     private String comment;
 
-    @Field
+
     private ArrayList<Comment> commentReplies;
 
     public Comment(){

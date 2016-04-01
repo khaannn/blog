@@ -1,5 +1,8 @@
 package com.khaannn;
 
+
+import com.khaannn.couchbase.service.BlogService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
@@ -11,8 +14,9 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @Controller
-public class SampleController {
-
+public class BlogController {
+    @Autowired
+    BlogService blogService;
 
     @RequestMapping("/about")
     String about(Model model){
@@ -33,8 +37,13 @@ public class SampleController {
     @RequestMapping("/footer")
     String footer() { return "footer";}
 
-
+    @RequestMapping("/test")
+    String test() {
+        blogService.createUser("Khaannn", 9001, "test");
+        blogService.doStuff();
+        return "test";
+    }
     public static void main(String[] args) {
-        SpringApplication.run(SampleController.class, args);
+        SpringApplication.run(BlogController.class, args);
     }
 }
