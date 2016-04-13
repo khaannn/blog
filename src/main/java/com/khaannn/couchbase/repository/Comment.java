@@ -71,4 +71,16 @@ public class Comment {
     public void setCommentReplies(ArrayList<Comment> commentReplies) {
         this.commentReplies = commentReplies;
     }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "commentId='" + commentId + '\'' +
+                ", userId='" + userId + '\'' +
+                ", date=" + date +
+                ", comment='" + comment + '\'' +
+                ", commentReplies=" + commentReplies +
+                '}';
+    }
+
 }

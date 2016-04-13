@@ -25,6 +25,9 @@ public class User {
     @Field
     private String passwordHash;
 
+    @Field
+    private Date endDate;
+
 
     public User(){
         this.initialize();
@@ -34,6 +37,15 @@ public class User {
         this.userName = userName;
         this.securityLevel = securityLevel;
         this.passwordHash = PasswordHasher.hashPassword(passwordHash);
+        this.initialize();
+    }
+
+    public User(String userName, Date registrationDate, int securityLevel, String passwordHash, Date endDate) {
+        this.userName = userName;
+        this.registrationDate = registrationDate;
+        this.securityLevel = securityLevel;
+        this.passwordHash = passwordHash;
+        this.endDate = endDate;
         this.initialize();
     }
 
@@ -73,5 +85,13 @@ public class User {
 
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 }

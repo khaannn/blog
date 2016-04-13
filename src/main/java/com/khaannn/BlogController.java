@@ -1,12 +1,17 @@
 package com.khaannn;
 
 
+import com.khaannn.couchbase.repository.Post;
+import com.khaannn.couchbase.repository.User;
 import com.khaannn.couchbase.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -39,10 +44,44 @@ public class BlogController {
 
     @RequestMapping("/test")
     String test() {
-        blogService.createUser("Khaannn", 9001, "test");
+        blogService.deleteAll();
+        User user = new User("Khaannn", 9001, "test");
+        blogService.createUser(user);
         blogService.doStuff();
+        blogService.getAllPosts();
         return "test";
     }
+
+    @RequestMapping("/allPosts")
+    public String allPosts(){
+        List<Post> posts = blogService.getAllPosts();
+        for(Post post : posts){
+           System.out.println(post);
+        }
+        return "allPosts";
+    }
+
+
+    @RequestMapping(value="/newPost", method=RequestMethod.GET)
+    public String createPost(Model model){
+        model.addAttribute("post", new Post());
+        return "newPost";
+    }
+
+    @RequestMapping(value="/newPost", method=RequestMethod.POST)
+    public String createPostEditor(@ModelAttribute Post post){
+        try {
+            blogService.insertPost(post);
+        } catch (Exception e){
+            return "fail";
+        }
+        return "viewPost";
+
+
+    }
+
+
+
     public static void main(String[] args) {
         SpringApplication.run(BlogController.class, args);
     }

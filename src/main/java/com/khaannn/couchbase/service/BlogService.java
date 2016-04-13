@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,12 +35,15 @@ public class BlogService {
     }
 
     public void doStuff(){
-        postRepository.deleteAll();
         Post post = new Post();
         post.setTitle("Test Title");
+        post.setDescription("Desription");
         post.setUserName("Jeff");
         post.setPostText("<p>Test of Couchbase and Spring Data</p><p>Going to need markdown javascript</p>");
-        post.setComments(new ArrayList<Comment>());
+        Comment comment = new Comment("Khaannn", new Date(), "first post", new ArrayList<>());
+        ArrayList<Comment> comments = new ArrayList<>();
+        comments.add(comment);
+        post.setComments(comments);
         post = postRepository.save(post);
     }
 
@@ -47,6 +51,17 @@ public class BlogService {
         User user = new User(userName, securityLevel, password);
         userRepository.save(user);
     }
+
+    public void createUser(User user){
+        userRepository.save(user);
+    }
+
+    public void deleteAll(){
+        userRepository.deleteAll();
+    }
+
+
+
 
 
 }

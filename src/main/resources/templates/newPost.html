@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:replace="fragment/template :: head"/>
+
+<body>
+
+<nav th:replace = "fragment/template :: navbar"/>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header th:replace ="fragment/template :: intro-header" />
+
+    <!-- Main Content -->
+    <div class="main">
+        <form action="#" th:action="@{/newPost}" th:object="${post}" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="md-col-8">Title: <input type="text" th:field="*{title}"/></div>
+        </div>
+        <div class="row">
+            <div class="md-col-8">
+                 Description: <input type="text" th:field="*{description}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="md-col-8">
+                Post text: <input type="text" th:field="*{postText}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="md-col-8">
+                 Username: <input type="text" th:field="*{userName}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="md-col-8">
+                <input type="submit" value="Submit" />
+            </div>
+        </div>
+    </div>
+
+    </form>
+        </div>
+    <hr/>
+
+    <div th:replace="footer"></div>
+
+
+    <!-- jQuery -->
+    <script src="../js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../js/clean-blog.min.js"></script>
+
+</body>
+
+</html>

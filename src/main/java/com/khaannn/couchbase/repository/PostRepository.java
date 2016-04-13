@@ -10,7 +10,8 @@ import java.util.List;
  */
 public interface PostRepository extends CrudRepository<Post, String> {
 
-        @View(designDocument = "posts", viewName = "findAll")
+        @View(designDocument = "post", viewName = "returnAll")
         List<Post> getAllPosts();
+
 
 }
