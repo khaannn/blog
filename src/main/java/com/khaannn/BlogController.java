@@ -53,7 +53,7 @@ public class BlogController {
     }
 
     @RequestMapping("/allPosts")
-    public String allPosts(){
+    public String allPosts(@RequestParam("page") String page){
         List<Post> posts = blogService.getAllPosts();
         for(Post post : posts){
            System.out.println(post);
@@ -75,10 +75,15 @@ public class BlogController {
         } catch (Exception e){
             return "fail";
         }
-        return "viewPost";
-
-
+        return "successfulPostCreation";
     }
+
+    @RequestMapping(value="/post")
+    public String viewFullPost(){
+
+        return "viewPost";
+    }
+
 
 
 
